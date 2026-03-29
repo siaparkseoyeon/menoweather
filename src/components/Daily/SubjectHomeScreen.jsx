@@ -46,6 +46,12 @@ export default function SubjectHomeScreen({
     setShowPopup(true);
   };
 
+  // 🌫️ Q11 직접 트리거 — "혼자 있고 싶어요?" 팝업
+  const handleAlonePopup = () => {
+    setPopupQtype('Q11');
+    setShowPopup(true);
+  };
+
 
   return (
     <div className="screen-container">
@@ -56,6 +62,7 @@ export default function SubjectHomeScreen({
           <p className="topbar-title">{p?.displayName}'s Today</p>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
+          <button className="icon-btn" onClick={handleAlonePopup} title="Alone time">🌫️</button>
           <button className="icon-btn" onClick={handleDemoPopup} title="Trigger popup demo">🔔</button>
           <button className="icon-btn" onClick={() => onNavigate(SCREENS.REPORT)}>📊</button>
         </div>
