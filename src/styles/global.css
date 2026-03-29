@@ -388,10 +388,28 @@ mark { background: #FFF9C4; border-radius: 2px; }
 .anim { animation: fadeUp .4s ease both; }
 
 /* ── Mobile full-screen override ────────────────── */
-@media (max-width: 430px) {
-  html, body { background: var(--cream); align-items: flex-start; overflow: auto; }
-  #root { width: 100%; height: 100dvh; }
-  .screen-container { width: 100%; height: 100dvh; border-radius: 0; box-shadow: none; }
+@media (max-width: 768px) {
+  html, body {
+    background: var(--cream);
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+  #root {
+    width: 100%;
+    height: 100dvh;
+    height: 100vh;
+    transform: none !important;
+  }
+  .screen-container {
+    width: 100%;
+    height: 100dvh;
+    height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+  }
 }
 
 /* ── Settings Screen (v2) ───────────────────────── */

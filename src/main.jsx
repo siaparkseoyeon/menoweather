@@ -9,7 +9,14 @@ function applyPhoneScale() {
   const PHONE_H = 844;
   const vw = window.innerWidth;
   const vh = window.innerHeight;
-  // 여백 40px 확보해서 위아래 안 잘리게
+
+  // 모바일(768px 이하)에서는 scale 적용 안 함 — CSS가 처리
+  if (vw <= 768) {
+    document.documentElement.style.setProperty('--phone-scale', '1');
+    return;
+  }
+
+  // 데스크톱: 여백 40px 확보
   const scaleX = vw / PHONE_W;
   const scaleY = (vh - 40) / PHONE_H;
   const scale = Math.min(scaleX, scaleY, 1);
