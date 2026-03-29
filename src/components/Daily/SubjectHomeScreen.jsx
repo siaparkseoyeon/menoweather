@@ -62,7 +62,6 @@ export default function SubjectHomeScreen({
           <p className="topbar-title">{p?.displayName}'s Today</p>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button className="icon-btn" onClick={handleAlonePopup} title="Alone time">🌫️</button>
           <button className="icon-btn" onClick={handleDemoPopup} title="Trigger popup demo">🔔</button>
           <button className="icon-btn" onClick={() => onNavigate(SCREENS.REPORT)}>📊</button>
         </div>
