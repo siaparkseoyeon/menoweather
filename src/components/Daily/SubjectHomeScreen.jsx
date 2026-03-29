@@ -4,7 +4,7 @@
  * Shows today's weather state, EWMA Top-3, timeline, and quick actions.
  */
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { getWeatherState, WEATHER_DEFS } from '../../lib/weatherSystem.js';
 import { buildDailyPopupPool } from '../../lib/ewma.js';
 import StatusPopup from '../Popup/StatusPopup.jsx';
@@ -35,14 +35,17 @@ export default function SubjectHomeScreen({
     setFamilyPopupShown(false);
   }
 
+  const popupIndexRef = React.useRef(0);
   const handleDemoPopup = () => {
     if (!top3?.length) return;
     const pool = buildDailyPopupPool(top3, todayCheckin);
-    const usedCount = Object.keys(popupBonus).length;
-    const slot = pool[usedCount % pool.length];
+    const idx = popupIndexRef.current % pool.length;
+    const slot = pool[idx];
+    popupIndexRef.current = idx + 1;
     setPopupQtype(slot.qtype);
     setShowPopup(true);
   };
+
 
   return (
     <div className="screen-container">
