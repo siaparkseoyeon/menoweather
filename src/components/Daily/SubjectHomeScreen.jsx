@@ -138,9 +138,21 @@ export default function SubjectHomeScreen({
           isFamilyRequest={pendingFamilyPopup && familyPopupShown}
           onRespond={(key, val) => {
             onPopupResponse(key, val);
+
+            // 기분 팝업(Q01/Q09)에서 ≤2 응답 → Q11 자동 연결
+            const isMoodQ = key === 'Q01' || key === 'Q09';
+            const isLow   = typeof val === 'number' && val <= 2;
+            if (isMoodQ && isLow && popupQtype !== 'Q11') {
+              // 0.3초 후 Q11 팝업 표시
+              setTimeout(() => {
+                setPopupQtype('Q11');
+                setShowPopup(true);
+              }, 300);
+              return;
+            }
+
             setShowPopup(false);
             if (pendingFamilyPopup) onFamilyPopupDismissed();
-            // App.jsx will auto-navigate back to family view
           }}
           onDismiss={() => {
             onPopupResponse(popupQtype, null);
